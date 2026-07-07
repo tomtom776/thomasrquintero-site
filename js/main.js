@@ -236,6 +236,7 @@
       video.playsInline = true;          /* no iOS fullscreen takeover */
       video.preload = "none";            /* nothing loads until lazy-load */
       video.dataset.src = project.media.src;
+      if (project.media.srcWebm) video.dataset.srcWebm = project.media.srcWebm;
       if (project.media.poster) video.poster = project.media.poster;
       video.setAttribute("aria-label", project.media.alt);
       video.addEventListener("error", () => mediaFallback(media, project.title));
@@ -292,7 +293,12 @@
           const video = entry.target;
           if (entry.isIntersecting) {
             if (!video.src) {            /* first approach: attach the file */
-              video.src = video.dataset.src;
+              /* mp4/H.264 is near-universal; the WebM copy covers the few
+                 browsers built without the H.264 codec */
+              const mp4Ok = video.canPlayType('video/mp4; codecs="avc1.640028"');
+              video.src = (!mp4Ok && video.dataset.srcWebm)
+                ? video.dataset.srcWebm
+                : video.dataset.src;
               video.load();
             }
             /* reduced-motion users keep the poster; no auto playback */

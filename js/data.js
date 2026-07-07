@@ -64,6 +64,7 @@ const SITE_DATA = {
       media: {
         type: "video",
         src: "assets/videos/glo-field-visit.mp4",
+        srcWebm: "assets/videos/glo-field-visit.webm",
         poster: "assets/img/glo-field-visit-poster.jpg",
         alt: "Screen recording of the hydraulic structure field data reviewer"
       },
@@ -78,6 +79,7 @@ const SITE_DATA = {
       media: {
         type: "video",
         src: "assets/videos/wrp-reference-map.mp4",
+        srcWebm: "assets/videos/wrp-reference-map.webm",
         poster: "assets/img/wrp-reference-map-poster.jpg",
         alt: "Screen recording of the water resources planning reference map"
       },
@@ -105,6 +107,7 @@ const SITE_DATA = {
       media: {
         type: "video",
         src: "assets/videos/competitor-analysis.mp4",
+        srcWebm: "assets/videos/competitor-analysis.webm",
         poster: "assets/img/competitor-analysis-poster.jpg",
         alt: "Screen recording of the competitor analysis web app"
       },
