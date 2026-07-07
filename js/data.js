@@ -29,7 +29,7 @@ const SITE_DATA = {
         "and ministry needs for every parish in the Archdiocese of Galveston-Houston.",
       media: {
         type: "image",
-        src: "assets/img/who-is-my-neighbor.jpg",
+        src: "assets/img/who-is-my-neighbor.png",
         alt: "Map of parish territories across the Archdiocese of Galveston-Houston"
       },
       link: {
@@ -46,7 +46,7 @@ const SITE_DATA = {
         "zones, recent crime, and walkability.",
       media: {
         type: "image",
-        src: "assets/img/property-tool.jpg",
+        src: "assets/img/property-tool.png",
         alt: "Web app showing flood, school, crime, and walkability layers for a property"
       },
       link: {
@@ -76,9 +76,10 @@ const SITE_DATA = {
         "A web app that gives the Water Resources Planning group a shared picture " +
         "of key spatial datasets when communicating with clients.",
       media: {
-        type: "image",
-        src: "assets/img/wrp-reference-map.jpg",
-        alt: "Reference map of water resources planning datasets"
+        type: "video",
+        src: "assets/videos/wrp-reference-map.mp4",
+        poster: "assets/img/wrp-reference-map-poster.jpg",
+        alt: "Screen recording of the water resources planning reference map"
       },
       link: null
     },
@@ -89,10 +90,9 @@ const SITE_DATA = {
         "A repeatable, objective geospatial analysis quantifying flood exposure " +
         "across the Texas General Land Office's Central region.",
       media: {
-        type: "video",
-        src: "assets/videos/glo-hot-spot.mp4",
-        poster: "assets/img/glo-hot-spot-poster.jpg",
-        alt: "Screen recording of flood exposure hot spot analysis results"
+        type: "image",
+        src: "assets/img/glo-hot-spot.png",
+        alt: "Methodology diagram of the flood exposure hot spot analysis"
       },
       link: null
     },
