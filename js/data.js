@@ -29,7 +29,7 @@ const SITE_DATA = {
         "and ministry needs for every parish in the Archdiocese of Galveston-Houston.",
       media: {
         type: "image",
-        src: "assets/img/who-is-my-neighbor.png",
+        src: "assets/img/who-is-my-neighbor.jpg",
         alt: "Map of parish territories across the Archdiocese of Galveston-Houston"
       },
       link: {
@@ -46,7 +46,7 @@ const SITE_DATA = {
         "zones, recent crime, and walkability.",
       media: {
         type: "image",
-        src: "assets/img/property-tool.png",
+        src: "assets/img/property-tool.jpg",
         alt: "Web app showing flood, school, crime, and walkability layers for a property"
       },
       link: {
