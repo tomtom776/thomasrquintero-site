@@ -390,10 +390,293 @@ a:focus-visible, button:focus-visible {
 }
 .pcard-link:hover { text-decoration: underline; }
 
-.section-stub { border-top: 1px solid var(--line); }
-.stub-note {
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+}
+@media (min-width: 900px) {
+  .about-grid { grid-template-columns: 1.7fr 1fr; align-items: start; }
+}
+
+.about-prose p:not(.eyebrow) {
+  max-width: 62ch;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+.about-prose p:first-of-type { color: var(--ink); }
+
+/* quick facts: a survey-legend style card */
+.about-facts dl {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  padding: 24px 26px;
+}
+.about-facts dt {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-top: 16px;
+}
+.about-facts dt:first-child { margin-top: 0; }
+.about-facts dd { margin: 3px 0 0; font-size: 15.5px; }
+
+/* ==========================================================================
+   SKILLS
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 820px) { .skills-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.skill-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 26px 26px 28px;
+}
+.skill-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  margin: 0 0 18px;
+}
+.chip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip-list li {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: var(--paper);
+}
+
+/* ==========================================================================
+   EXPERIENCE TIMELINE
+   Mobile-first: vertical rail with expandable rows. On wide screens the
+   same DOM becomes a horizontal track of stops with a shared detail
+   panel row beneath. All interaction is click/tap on <button>s.
+   ========================================================================== */
+.section-experience {
+  background: var(--paper-deep);
+  border-top: 1px solid var(--line);
+}
+
+.timeline { position: relative; }
+
+/* the connecting rail (vertical on mobile) */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--line);
+}
+
+.tl-stop {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  padding: 14px 8px 14px 40px;
+  border-radius: 8px;
+}
+.tl-stop:hover .tl-org { color: var(--rust); }
+
+.tl-dot {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.tl-stop[aria-expanded="true"] .tl-dot {
+  background: var(--rust);
+  border-color: var(--rust);
+}
+.tl-stop[aria-expanded="true"] .tl-org { color: var(--rust); }
+
+.tl-dates {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
+}
+.tl-org {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ink);
+  transition: color 150ms ease;
+}
+.tl-role {
+  display: block;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+.tl-panel {
+  margin: 2px 0 14px 40px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--sage);
+  border-radius: 8px;
+  padding: 18px 22px;
+}
+.tl-panel h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+.tl-panel-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--rust);
+  margin: 0 0 10px;
+}
+.tl-panel-summary {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+/* wide screens: stops fan out horizontally; panels share the row below */
+@media (min-width: 820px) {
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 24px;
+  }
+  /* the rail turns horizontal, running through the dots */
+  .timeline::before {
+    left: 8px;
+    right: 8px;
+    top: 39px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+
+  .tl-stop {
+    grid-row: 1;
+    width: auto;
+    padding: 0 0 6px;
+  }
+  .tl-dot {
+    position: static;
+    display: block;
+    margin: 8px 0 12px;
+  }
+  .tl-dates { margin-bottom: 0; }
+
+  .tl-panel {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    margin: 26px 0 0;
+    padding: 24px 28px;
+  }
+  /* on desktop the stop already shows org/role; don't repeat the heading */
+  .tl-panel h3 { display: none; }
+}
+
+/* ==========================================================================
+   CONTACT — dark umber close
+   ========================================================================== */
+.section-contact {
+  background: var(--ink);
+  color: var(--paper);
+}
+.section-contact .eyebrow { color: var(--sage); }
+.section-contact .section-title { color: var(--paper); }
+
+.contact-lede {
+  color: var(--line);
+  max-width: 50ch;
+  margin: 0 0 40px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 48px;
+}
+.contact-channel { margin: 0; }
+.contact-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 4px;
+}
+.contact-channel a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 3.4vw, 30px);
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(220, 210, 190, 0.35);
+  transition: border-color 150ms ease, color 150ms ease;
+}
+.contact-channel a:hover { color: #E8B296; border-color: #E8B296; }
+.contact-channel a:focus-visible { outline-color: var(--paper); }
+
+.contact-ai {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--ink-soft);
-  opacity: 0.6;
+  color: rgba(220, 210, 190, 0.75);
+  margin: 0;
+}
+.contact-ai a { color: #E8B296; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background: var(--ink);
+  color: rgba(220, 210, 190, 0.55);
+  padding: 0 20px 28px;
+}
+.site-footer p {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border-top: 1px solid rgba(220, 210, 190, 0.16);
+  padding-top: 20px;
 }

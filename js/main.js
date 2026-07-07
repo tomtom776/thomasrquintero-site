@@ -314,4 +314,182 @@
     }
   }
 
+  /* ------------------------------------------------------------------
+     ABOUT — bio paragraphs + quick-facts list from SITE_DATA.about
+     ------------------------------------------------------------------ */
+  const aboutParagraphs = document.getElementById("aboutParagraphs");
+  const aboutFacts = document.getElementById("aboutFacts");
+
+  if (aboutParagraphs) {
+    SITE_DATA.about.paragraphs.forEach((text) => {
+      const p = document.createElement("p");
+      p.textContent = text;
+      aboutParagraphs.appendChild(p);
+    });
+  }
+  if (aboutFacts) {
+    const dl = document.createElement("dl");
+    SITE_DATA.about.facts.forEach((fact) => {
+      const dt = document.createElement("dt");
+      dt.textContent = fact.label;
+      const dd = document.createElement("dd");
+      dd.textContent = fact.value;
+      dl.append(dt, dd);
+    });
+    aboutFacts.appendChild(dl);
+  }
+
+  /* ------------------------------------------------------------------
+     SKILLS — one card per category, items as chips
+     ------------------------------------------------------------------ */
+  const skillsGrid = document.getElementById("skillsGrid");
+
+  if (skillsGrid) {
+    SITE_DATA.skills.forEach((group) => {
+      const card = document.createElement("div");
+      card.className = "skill-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = group.category;
+
+      const list = document.createElement("ul");
+      list.className = "chip-list";
+      group.items.forEach((item) => {
+        const chip = document.createElement("li");
+        chip.textContent = item;
+        list.appendChild(chip);
+      });
+
+      card.append(heading, list);
+      skillsGrid.appendChild(card);
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     EXPERIENCE TIMELINE — disclosure pattern, one open at a time.
+     Layout is pure CSS: a horizontal track of stops on wide screens,
+     a vertical rail on phones. Buttons work by click/tap/keyboard —
+     no hover anywhere.
+     ------------------------------------------------------------------ */
+  const timeline = document.getElementById("timeline");
+
+  if (timeline) {
+    const stops = [];
+
+    SITE_DATA.timeline.forEach((entry, index) => {
+      const panelId = "tl-panel-" + index;
+
+      const stop = document.createElement("button");
+      stop.type = "button";
+      stop.className = "tl-stop";
+      stop.setAttribute("aria-expanded", "false");
+      stop.setAttribute("aria-controls", panelId);
+
+      const dates = document.createElement("span");
+      dates.className = "tl-dates";
+      dates.textContent = entry.dates;
+
+      const dot = document.createElement("span");
+      dot.className = "tl-dot";
+      dot.setAttribute("aria-hidden", "true");
+
+      const org = document.createElement("span");
+      org.className = "tl-org";
+      org.textContent = entry.org;
+
+      const role = document.createElement("span");
+      role.className = "tl-role";
+      role.textContent = entry.role;
+
+      stop.append(dates, dot, org, role);
+
+      const panel = document.createElement("div");
+      panel.className = "tl-panel";
+      panel.id = panelId;
+      panel.hidden = true;
+
+      const panelHeading = document.createElement("h3");
+      panelHeading.textContent = entry.org;
+      const panelMeta = document.createElement("p");
+      panelMeta.className = "tl-panel-meta";
+      panelMeta.textContent = entry.role + " · " + entry.dates;
+      const panelSummary = document.createElement("p");
+      panelSummary.className = "tl-panel-summary";
+      panelSummary.textContent = entry.summary;
+      panel.append(panelHeading, panelMeta, panelSummary);
+
+      stop.addEventListener("click", () => {
+        const isOpen = stop.getAttribute("aria-expanded") === "true";
+        /* close everything, then open the clicked one (unless it was open) */
+        stops.forEach((s) => {
+          s.stop.setAttribute("aria-expanded", "false");
+          s.panel.hidden = true;
+        });
+        if (!isOpen) {
+          stop.setAttribute("aria-expanded", "true");
+          panel.hidden = false;
+        }
+      });
+
+      stops.push({ stop, panel });
+      timeline.append(stop, panel);
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     CONTACT — direct channels plus the AI-research flourish
+     ------------------------------------------------------------------ */
+  const contactLinks = document.getElementById("contactLinks");
+  const contactAi = document.getElementById("contactAi");
+
+  if (contactLinks) {
+    const c = SITE_DATA.contact;
+    const channels = [
+      { label: "Phone", text: c.phone, href: "tel:+1" + c.phone.replace(/\D/g, "") },
+      { label: "Email", text: c.email, href: "mailto:" + c.email },
+      { label: "LinkedIn", text: "in/thomasrquintero", href: c.linkedin, external: true }
+    ];
+
+    channels.forEach((channel) => {
+      const wrap = document.createElement("p");
+      wrap.className = "contact-channel";
+
+      const label = document.createElement("span");
+      label.className = "contact-label";
+      label.textContent = channel.label;
+
+      const link = document.createElement("a");
+      link.href = channel.href;
+      link.textContent = channel.text;
+      if (channel.external) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+
+      wrap.append(label, link);
+      contactLinks.appendChild(wrap);
+    });
+  }
+
+  if (contactAi) {
+    /* Novelty: hand visitors a prefilled prompt about me. Both services
+       need the visitor to be signed in; links degrade to their homepages. */
+    const query = encodeURIComponent(SITE_DATA.contact.aiQuery);
+    contactAi.append("Or let an AI introduce me: ");
+
+    const chatgpt = document.createElement("a");
+    chatgpt.href = "https://chatgpt.com/?q=" + query;
+    chatgpt.target = "_blank";
+    chatgpt.rel = "noopener noreferrer";
+    chatgpt.textContent = "ask ChatGPT";
+
+    const claude = document.createElement("a");
+    claude.href = "https://claude.ai/new?q=" + query;
+    claude.target = "_blank";
+    claude.rel = "noopener noreferrer";
+    claude.textContent = "ask Claude";
+
+    contactAi.append(chatgpt, " · ", claude);
+  }
+
 })();

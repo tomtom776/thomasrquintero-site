@@ -7,6 +7,40 @@
 const SITE_DATA = {
 
   /* ------------------------------------------------------------------
+     ABOUT — bio paragraphs plus the quick-facts sidebar
+     ------------------------------------------------------------------ */
+  about: {
+    paragraphs: [
+      "Howdy — I'm Thomas. My \"why\" is being a resource to my family and " +
+      "my community. I grew up in Houston's Northside, where I still call " +
+      "St. Patrick Catholic Church home, and I've been building things and " +
+      "figuring out systems since I was selling pencils to classmates in " +
+      "the first grade.",
+
+      "I put myself through The University of Texas at Austin on " +
+      "scholarships and graduated debt-free with a degree in Geology in " +
+      "2020. That eye for reading data out of the physical world turned " +
+      "into a career in GIS: today I'm a GIS Analyst in the stormwater " +
+      "group at a civil engineering firm, where I manage, validate, and " +
+      "visualize the large geospatial datasets that engineering and " +
+      "environmental teams rely on to make decisions.",
+
+      "I'm a systems guy at heart — I like taking messy, scattered data " +
+      "and turning it into something clear enough to act on. Outside of " +
+      "work my interests run toward real estate, geology, and Catholic " +
+      "culture, and I try to bring the same care to my community and " +
+      "family that I bring to my projects."
+    ],
+    facts: [
+      { label: "Based",       value: "Houston, TX — Northside" },
+      { label: "Education",   value: "B.S. Geology, UT Austin '20" },
+      { label: "Day job",     value: "GIS Analyst, stormwater group" },
+      { label: "Home parish", value: "St. Patrick Catholic Church" },
+      { label: "Off hours",   value: "Real estate · geology · Catholic culture" }
+    ]
+  },
+
+  /* ------------------------------------------------------------------
      FEATURED PROJECTS
      Each project:
        id          — short unique slug (used for element ids)
