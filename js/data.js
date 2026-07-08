@@ -17,9 +17,9 @@ const SITE_DATA = {
       "figuring out systems since I was selling pencils to classmates in " +
       "the first grade.",
 
-      "I put myself through The University of Texas at Austin on " +
-      "scholarships and graduated debt-free with a degree in Geology in " +
-      "2020. That eye for reading data out of the physical world turned " +
+      "I graduated from The University of Texas at Austin with a degree " +
+      "in Geology in 2020 with the assistance of many generous " +
+      "scholarships. That eye for reading data out of the physical world turned " +
       "into a career in GIS: today I'm a GIS Analyst in the stormwater " +
       "group at a civil engineering firm, where I manage, validate, and " +
       "visualize the large geospatial datasets that engineering and " +
