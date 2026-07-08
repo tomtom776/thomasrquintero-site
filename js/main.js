@@ -413,10 +413,14 @@
       const panelMeta = document.createElement("p");
       panelMeta.className = "tl-panel-meta";
       panelMeta.textContent = entry.role + " · " + entry.dates;
-      const panelSummary = document.createElement("p");
-      panelSummary.className = "tl-panel-summary";
-      panelSummary.textContent = entry.summary;
-      panel.append(panelHeading, panelMeta, panelSummary);
+      const bulletList = document.createElement("ul");
+      bulletList.className = "tl-bullets";
+      entry.bullets.forEach((text) => {
+        const item = document.createElement("li");
+        item.textContent = text;
+        bulletList.appendChild(item);
+      });
+      panel.append(panelHeading, panelMeta, bulletList);
 
       stop.addEventListener("click", () => {
         const isOpen = stop.getAttribute("aria-expanded") === "true";

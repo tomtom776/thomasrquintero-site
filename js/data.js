@@ -186,7 +186,7 @@ const SITE_DATA = {
   ],
 
   /* ------------------------------------------------------------------
-     EXPERIENCE TIMELINE — oldest first; rendered as an interactive
+     EXPERIENCE TIMELINE — oldest first, bullets per stop; an interactive
      horizontal track on desktop, vertical accordion on mobile
      ------------------------------------------------------------------ */
   timeline: [
@@ -194,33 +194,57 @@ const SITE_DATA = {
       org: "NASA DEVELOP",
       role: "GIS Analyst Intern",
       dates: "2020",
-      summary:
-        "Built regression maps of land surface temperature and ran LiDAR " +
-        "analysis with custom R scripts."
+      bullets: [
+        "Created regression maps of land surface temperature, showing an " +
+        "increase of 8 \u00b0F over ten years.",
+        "Extracted and analyzed ISS GEDI LiDAR data in ArcGIS Pro using a " +
+        "custom R script.",
+        "Presented final methods and conclusions to city partners and an " +
+        "international ARSET training."
+      ]
     },
     {
       org: "City of Detroit Planning Dept.",
       role: "GIS Analyst Intern",
-      dates: "2020–2021",
-      summary:
-        "Developed a tree planting suitability model with the Detroit " +
-        "Reforestation Initiative."
+      dates: "2020\u20132021",
+      bullets: [
+        "Developed a custom geoprocessing model in ModelBuilder to identify " +
+        "tree planting sites across Detroit.",
+        "Presented to the Detroit Reforestation Initiative, cooperating with " +
+        "the University of Michigan Urban Informatics team on a suitability " +
+        "model prioritizing tree planting."
+      ]
     },
     {
       org: "Public Management, Inc.",
       role: "Project Manager / GIS Technician",
-      dates: "2021–2023",
-      summary:
-        "Managed $80M+ in federal grant funds across 30+ Texas communities."
+      dates: "2021\u20132023",
+      bullets: [
+        "Managed over $80 million in federal grant funds for cities like " +
+        "Pasadena, Dayton, and Palmer.",
+        "Performed QA/QC and validation of field-collected spatial datasets " +
+        "prior to grant submission.",
+        "Coordinated map creation in competitive federally funded grants for " +
+        "over 30 communities."
+      ]
     },
     {
       org: "Freese and Nichols, Inc.",
       role: "GIS Analyst",
-      dates: "2023–Present",
-      summary:
-        "Coordinates field teams on 62 engineered assets, builds flood-risk " +
-        "geoprocessing workflows for GLO Regional Flood Planning, and serves " +
-        "as FEMA Region 5 data steward."
+      dates: "2023\u2013Present",
+      bullets: [
+        "Coordinates multi-disciplinary field teams collecting, validating, " +
+        "and QA/QC\u2019ing spatial and tabular datasets for 62 engineered " +
+        "assets using ArcGIS Field Maps, integrated into a centralized database.",
+        "Develops interactive data visualizations and technical map products " +
+        "to communicate spatial analysis results to internal and external " +
+        "stakeholders for Regional Flood Planning.",
+        "Maintains spatial datasets with documented workflows and metadata " +
+        "for FEMA Region 5.",
+        "Builds and executes geoprocessing and spatial analysis workflows in " +
+        "ModelBuilder to identify high-risk flood exposure areas and determine " +
+        "future phases of project evaluation for GLO RBFS."
+      ]
     }
   ],
 
