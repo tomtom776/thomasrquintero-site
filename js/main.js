@@ -321,9 +321,11 @@
   const aboutFacts = document.getElementById("aboutFacts");
 
   if (aboutParagraphs) {
-    SITE_DATA.about.paragraphs.forEach((text) => {
+    SITE_DATA.about.paragraphs.forEach((text, index) => {
       const p = document.createElement("p");
       p.textContent = text;
+      p.dataset.reveal = "left";
+      p.style.transitionDelay = index * 110 + "ms";   /* gentle stagger */
       aboutParagraphs.appendChild(p);
     });
   }
@@ -438,6 +440,50 @@
       stops.push({ stop, panel });
       timeline.append(stop, panel);
     });
+
+    /* ---- scroll scrub: a rust line travels the rail and lights each
+       stop in order as the section moves through the viewport ---- */
+    const progressLine = document.createElement("div");
+    progressLine.className = "tl-progress";
+    progressLine.setAttribute("aria-hidden", "true");
+    timeline.appendChild(progressLine);
+
+    if (prefersReducedMotion) {
+      stops.forEach((s) => s.stop.classList.add("lit"));
+    } else {
+      const wideLayout = window.matchMedia("(min-width: 820px)");
+      let ticking = false;
+
+      const updateScrub = () => {
+        ticking = false;
+        const rect = timeline.getBoundingClientRect();
+        const vh = window.innerHeight;
+        /* fill begins as the timeline crosses 88% viewport height and
+           completes by the time it reaches 38% — about half a screen
+           of scrolling to travel the whole career */
+        const startLine = vh * 0.88;
+        const endLine = vh * 0.38;
+        const progress = Math.min(1, Math.max(0, (startLine - rect.top) / (startLine - endLine)));
+
+        progressLine.style.transform = wideLayout.matches
+          ? "scaleX(" + progress + ")"
+          : "scaleY(" + progress + ")";
+
+        stops.forEach((s, i) => {
+          s.stop.classList.toggle("lit", progress >= i / stops.length);
+        });
+      };
+
+      const requestScrub = () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateScrub);
+        }
+      };
+      window.addEventListener("scroll", requestScrub, { passive: true });
+      window.addEventListener("resize", requestScrub);
+      updateScrub();
+    }
   }
 
   /* ------------------------------------------------------------------
@@ -494,6 +540,28 @@
     claude.textContent = "ask Claude";
 
     contactAi.append(chatgpt, " · ", claude);
+  }
+
+  /* ------------------------------------------------------------------
+     SCROLL REVEALS — everything tagged data-reveal (in the HTML or by
+     the renderers above) fades/slides in as it enters the viewport.
+     Runs last so dynamically rendered elements are included. Under
+     reduced motion the hidden state never exists (see styles.css),
+     so nothing needs to happen here.
+     ------------------------------------------------------------------ */
+  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          revealObserver.unobserve(entry.target);   /* reveal once */
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
+  } else {
+    /* no observer support: never leave content hidden */
+    document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("revealed"));
   }
 
 })();

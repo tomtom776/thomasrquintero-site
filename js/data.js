@@ -11,32 +11,31 @@ const SITE_DATA = {
      ------------------------------------------------------------------ */
   about: {
     paragraphs: [
-      "Howdy — I'm Thomas. My \"why\" is being a resource to my family and " +
-      "my community. I grew up in Houston's Northside, where I still call " +
-      "St. Patrick Catholic Church home, and I've been building things and " +
-      "figuring out systems since I was selling pencils to classmates in " +
-      "the first grade.",
+      "My central \"why\" is being a resource to my family and my " +
+      "community. I grew up in Houston's Northside, where I still call " +
+      "St. Patrick Catholic Church home, and I've been a systems oriented " +
+      "hands-on creator for as long as I can remember.",
 
       "I graduated from The University of Texas at Austin with a degree " +
       "in Geology in 2020 with the assistance of many generous " +
-      "scholarships. That eye for reading data out of the physical world turned " +
-      "into a career in GIS: today I'm a GIS Analyst in the stormwater " +
-      "group at a civil engineering firm, where I manage, validate, and " +
-      "visualize the large geospatial datasets that engineering and " +
-      "environmental teams rely on to make decisions.",
+      "scholarships. That eye for reading data out of the physical world " +
+      "turned into a career in GIS. Today I am a GIS Analyst in the " +
+      "stormwater group at a civil engineering firm, where I manage, " +
+      "validate, and visualize the large geospatial datasets that " +
+      "engineering and environmental teams rely on to make decisions.",
 
-      "I'm a systems guy at heart — I like taking messy, scattered data " +
-      "and turning it into something clear enough to act on. Outside of " +
-      "work my interests run toward real estate, geology, and Catholic " +
-      "culture, and I try to bring the same care to my community and " +
-      "family that I bring to my projects."
+      "I like taking messy, scattered data and turning it into something " +
+      "clear enough to act on. Outside of work my interests overlap " +
+      "between DIY construction, geology, and Catholic culture, and I " +
+      "always bring the same care to my community and family that I " +
+      "bring to my projects."
     ],
     facts: [
       { label: "Based",       value: "Houston, TX — Northside" },
       { label: "Education",   value: "B.S. Geology, UT Austin '20" },
       { label: "Day job",     value: "GIS Analyst, stormwater group" },
       { label: "Home parish", value: "St. Patrick Catholic Church" },
-      { label: "Off hours",   value: "Real estate · geology · Catholic culture" }
+      { label: "Off hours",   value: "DIY construction · geology · Catholic culture" }
     ]
   },
 

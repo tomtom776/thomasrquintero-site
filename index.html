@@ -30,8 +30,8 @@
       <nav class="nav-links" id="navLinks" aria-label="Site sections">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
         <a href="#contact" class="nav-contact">Contact</a>
       </nav>
 
@@ -49,19 +49,19 @@
     <section class="hero">
       <canvas class="hero-contours" id="heroContours" aria-hidden="true"></canvas>
       <div class="hero-inner">
-        <div class="hero-text">
+        <div class="hero-text" data-reveal="left">
           <p class="eyebrow">GIS Analyst &middot; Houston, TX</p>
           <h1 class="hero-title">Messy data in.<br>Clear insights out.</h1>
           <p class="hero-sub">
-            I'm Thomas Quintero. I turn large, scattered geospatial datasets into
-            maps and tools that engineering and planning teams can act on.
+            Howdy, I'm Thomas and I turn large, scattered geospatial datasets
+            into tools you can act on.
           </p>
           <a class="btn btn-primary" href="#contact">Contact Me</a>
         </div>
 
         <!-- portrait in a tilted compass / north-arrow frame;
              SVG ticks + arrow are drawn by buildPortraitFrame() in main.js -->
-        <figure class="hero-portrait" id="heroPortrait">
+        <figure class="hero-portrait" id="heroPortrait" data-reveal="right">
           <!-- populated by js/main.js -->
         </figure>
       </div>
@@ -73,13 +73,13 @@
     <section class="section" id="about">
       <div class="section-inner about-grid">
         <div class="about-prose">
-          <p class="eyebrow">Howdy</p>
-          <h2 class="section-title">About</h2>
+          <h2 class="section-title" data-reveal="left">About</h2>
           <!-- paragraphs render from SITE_DATA.about.paragraphs -->
           <div id="aboutParagraphs"></div>
         </div>
         <!-- quick facts render from SITE_DATA.about.facts -->
-        <aside class="about-facts" id="aboutFacts" aria-label="Quick facts"></aside>
+        <aside class="about-facts" id="aboutFacts" aria-label="Quick facts"
+               data-reveal="right"></aside>
       </div>
     </section>
 
@@ -96,29 +96,29 @@
       </div>
     </section>
 
-    <section class="section section-skills" id="skills">
-      <div class="section-inner">
-        <p class="eyebrow">Toolkit</p>
-        <h2 class="section-title">Technical Skills</h2>
-        <!-- category cards render from SITE_DATA.skills -->
-        <div class="skills-grid" id="skillsGrid"></div>
-      </div>
-    </section>
-
     <section class="section section-experience" id="experience">
       <div class="section-inner">
-        <p class="eyebrow">Career path</p>
-        <h2 class="section-title">Experience</h2>
-        <p class="section-kicker">Four stops, oldest to newest — click any of them.</p>
+        <p class="eyebrow" data-reveal="up">Career path</p>
+        <h2 class="section-title" data-reveal="up">Experience</h2>
+        <p class="section-kicker" data-reveal="up">Four stops, oldest to newest — click any of them.</p>
         <!-- interactive timeline renders from SITE_DATA.timeline -->
         <div class="timeline" id="timeline"></div>
       </div>
     </section>
 
+    <section class="section section-skills" id="skills">
+      <div class="section-inner">
+        <p class="eyebrow" data-reveal="up">Toolkit</p>
+        <h2 class="section-title" data-reveal="up">Technical Skills</h2>
+        <!-- category cards render from SITE_DATA.skills -->
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
     <section class="section section-contact" id="contact">
       <div class="section-inner">
-        <p class="eyebrow">Get in touch</p>
-        <h2 class="section-title">Let's map something.</h2>
+        <p class="eyebrow" data-reveal="up">Get in touch</p>
+        <h2 class="section-title" data-reveal="up">Let's map something.</h2>
         <p class="contact-lede">
           If one of these projects looks like a problem your team is facing,
           I'd love to hear about it.
